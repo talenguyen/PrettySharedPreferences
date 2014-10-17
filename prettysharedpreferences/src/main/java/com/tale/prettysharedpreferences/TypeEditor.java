@@ -9,20 +9,16 @@ public abstract class TypeEditor<ValueType> {
 
     SharedPreferences sharedPreferences;
     String key;
-    boolean autoCommit;
 
-    protected TypeEditor(SharedPreferences sharedPreferences, String key, boolean autoCommit) {
+    protected TypeEditor(SharedPreferences sharedPreferences, String key) {
         this.sharedPreferences = sharedPreferences;
         this.key = key;
-        this.autoCommit = autoCommit;
     }
 
     public void put(ValueType value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         putValue(editor, key, value);
-        if (autoCommit) {
-            editor.apply();
-        }
+        editor.apply();
     }
 
     protected abstract void putValue(SharedPreferences.Editor editor, String key, ValueType value);
@@ -36,9 +32,7 @@ public abstract class TypeEditor<ValueType> {
     public void remove() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(key);
-        if (autoCommit) {
-            editor.apply();
-        }
+        editor.apply();
     }
 
 }

@@ -21,7 +21,7 @@ public class PrettySharedPreferences {
     public StringEditor getStringEditor(String key, boolean autoCommit) {
         TypeEditor typeEditor = typeEditorMap.get(key);
         if (typeEditor == null) {
-            typeEditor = new StringEditor(sharedPreferences, key, autoCommit);
+            typeEditor = new StringEditor(sharedPreferences, key);
             typeEditorMap.put(key, typeEditor);
         } else if (!(typeEditor instanceof StringEditor)) {
             throw new IllegalArgumentException(String.format("key is already exists for other %s type", typeEditor.getClass().getName()));
@@ -33,7 +33,7 @@ public class PrettySharedPreferences {
     public LongEditor getLongEditor(String key, boolean autoCommit) {
         TypeEditor typeEditor = typeEditorMap.get(key);
         if (typeEditor == null) {
-            typeEditor = new LongEditor(sharedPreferences, key, autoCommit);
+            typeEditor = new LongEditor(sharedPreferences, key);
             typeEditorMap.put(key, typeEditor);
         } else if (!(typeEditor instanceof LongEditor)) {
             throw new IllegalArgumentException(String.format("key is already exists for other %s type", typeEditor.getClass().getName()));

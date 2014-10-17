@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
  * Created by TALE on 9/11/2014.
  */
 public class LongEditor extends TypeEditor<Long> {
-    protected LongEditor(SharedPreferences sharedPreferences, String key, boolean autoCommit) {
-        super(sharedPreferences, key, autoCommit);
+    protected LongEditor(SharedPreferences sharedPreferences, String key) {
+        super(sharedPreferences, key);
     }
 
     @Override

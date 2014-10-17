@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
  * Created by TALE on 9/11/2014.
  */
 public class StringEditor extends TypeEditor<String> {
-    protected StringEditor(SharedPreferences sharedPreferences, String key, boolean autoCommit) {
-        super(sharedPreferences, key, autoCommit);
+    protected StringEditor(SharedPreferences sharedPreferences, String key) {
+        super(sharedPreferences, key);
     }
 
     @Override
