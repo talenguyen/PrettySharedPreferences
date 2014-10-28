@@ -27,24 +27,12 @@ public class TypeEditorTest {
     SharedPreferences.Editor mockEditor;
 
     private TypeEditor autoCommitTypeEditor;
-    private TypeEditor manualCommitTypeEditor;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         when(mockSharedPref.edit()).thenReturn(mockEditor);
-        autoCommitTypeEditor = new TypeEditor(mockSharedPref, STRING_KEY, true) {
-            @Override
-            protected void putValue(SharedPreferences.Editor editor, String key, Object value) {
-
-            }
-
-            @Override
-            protected Object getValue(SharedPreferences sharedPreferences, String key, Object def) {
-                return null;
-            }
-        };
-        manualCommitTypeEditor = new TypeEditor(mockSharedPref, STRING_KEY, false) {
+        autoCommitTypeEditor = new TypeEditor(mockSharedPref, STRING_KEY) {
             @Override
             protected void putValue(SharedPreferences.Editor editor, String key, Object value) {
 
@@ -69,19 +57,5 @@ public class TypeEditorTest {
         autoCommitTypeEditor.remove();
         verify(mockEditor).apply();
     }
-
-    @Test
-    public void testPutManual() {
-        String mockValue = "Giang";
-        manualCommitTypeEditor.put(mockValue);
-        verify(mockEditor, never()).apply(); // Make sure apply() is called to commit data.
-    }
-
-    @Test
-    public void testRemoveManual() {
-        manualCommitTypeEditor.remove();
-        verify(mockEditor, never()).apply();
-    }
-
 
 }

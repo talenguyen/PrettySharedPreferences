@@ -33,15 +33,15 @@ public class TestPrettySharedPreferences {
 
     @Test
     public void testGetStringEditor() {
-        StringEditor stringEditor = prettySharedPreferences.getStringEditor(TEST_KEY, true);
+        StringEditor stringEditor = prettySharedPreferences.getStringEditor(TEST_KEY);
         assertThat(stringEditor).isInstanceOf(StringEditor.class);
     }
 
     @Test
     public void testGetStringEditorWithSameKey() {
-        StringEditor stringEditor = prettySharedPreferences.getStringEditor(TEST_KEY, true);
+        StringEditor stringEditor = prettySharedPreferences.getStringEditor(TEST_KEY);
         assertThat(stringEditor).isInstanceOf(StringEditor.class);
-        StringEditor stringEditor1 = prettySharedPreferences.getStringEditor(TEST_KEY, true);
+        StringEditor stringEditor1 = prettySharedPreferences.getStringEditor(TEST_KEY);
         assertThat(stringEditor1).isEqualTo(stringEditor); // Should return same object when same key.
     }
 }

@@ -31,7 +31,7 @@ public class StringEditorTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         when(mockSharedPref.edit()).thenReturn(mockEditor);
-        stringEditor = new StringEditor(mockSharedPref, STRING_KEY, true);
+        stringEditor = new StringEditor(mockSharedPref, STRING_KEY);
     }
 
     @Test
