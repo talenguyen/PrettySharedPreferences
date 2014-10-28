@@ -21,7 +21,7 @@ public class PrettySharedPreferences {
     public StringEditor getStringEditor(String key) {
         TypeEditor typeEditor = typeEditorMap.get(key);
         if (typeEditor == null) {
-            typeEditor = new StringEditor(sharedPreferences, key);
+            typeEditor = new StringEditor(this, sharedPreferences, key);
             typeEditorMap.put(key, typeEditor);
         } else if (!(typeEditor instanceof StringEditor)) {
             throw new IllegalArgumentException(String.format("key %s is duplicated", key));
@@ -30,64 +30,8 @@ public class PrettySharedPreferences {
         return (StringEditor) typeEditor;
     }
 
-    public LongEditor getLongEditor(String key) {
-        TypeEditor typeEditor = typeEditorMap.get(key);
-        if (typeEditor == null) {
-            typeEditor = new LongEditor(sharedPreferences, key);
-            typeEditorMap.put(key, typeEditor);
-        } else if (!(typeEditor instanceof LongEditor)) {
-            throw new IllegalArgumentException(String.format("key %s is duplicated", key));
-        }
-
-        return (LongEditor) typeEditor;
-    }
-
-    public IntegerEditor getIntegerEditor(String key) {
-        TypeEditor typeEditor = typeEditorMap.get(key);
-        if (typeEditor == null) {
-            typeEditor = new IntegerEditor(sharedPreferences, key);
-            typeEditorMap.put(key, typeEditor);
-        } else if (!(typeEditor instanceof IntegerEditor)) {
-            throw new IllegalArgumentException(String.format("key %s is duplicated", key));
-        }
-
-        return (IntegerEditor) typeEditor;
-    }
-
-    public BooleanEditor getBooleanEditor(String key) {
-        TypeEditor typeEditor = typeEditorMap.get(key);
-        if (typeEditor == null) {
-            typeEditor = new BooleanEditor(sharedPreferences, key);
-            typeEditorMap.put(key, typeEditor);
-        } else if (!(typeEditor instanceof BooleanEditor)) {
-            throw new IllegalArgumentException(String.format("key %s is duplicated", key));
-        }
-
-        return (BooleanEditor) typeEditor;
-    }
-
-    public FloatEditor getFloatEditor(String key) {
-        TypeEditor typeEditor = typeEditorMap.get(key);
-        if (typeEditor == null) {
-            typeEditor = new FloatEditor(sharedPreferences, key);
-            typeEditorMap.put(key, typeEditor);
-        } else if (!(typeEditor instanceof FloatEditor)) {
-            throw new IllegalArgumentException(String.format("key %s is duplicated", key));
-        }
-
-        return (FloatEditor) typeEditor;
-    }
-
-    public DoubleEditor getDoubleEditor(String key) {
-        TypeEditor typeEditor = typeEditorMap.get(key);
-        if (typeEditor == null) {
-            typeEditor = new DoubleEditor(sharedPreferences, key);
-            typeEditorMap.put(key, typeEditor);
-        } else if (!(typeEditor instanceof DoubleEditor)) {
-            throw new IllegalArgumentException(String.format("key %s is duplicated", key));
-        }
-
-        return (DoubleEditor) typeEditor;
+    public void apply() {
+        sharedPreferences.edit().apply();
     }
 
 }

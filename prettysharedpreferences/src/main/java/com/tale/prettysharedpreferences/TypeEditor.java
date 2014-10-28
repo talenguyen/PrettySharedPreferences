@@ -5,20 +5,22 @@ import android.content.SharedPreferences;
 /**
  * Created by TALE on 9/10/2014.
  */
-public abstract class TypeEditor<ValueType> {
+public abstract class TypeEditor<ValueType, T extends PrettySharedPreferences> {
 
-    SharedPreferences sharedPreferences;
-    String key;
+    private final T target;
+    private final SharedPreferences sharedPreferences;
+    private final String key;
 
-    protected TypeEditor(SharedPreferences sharedPreferences, String key) {
+    protected TypeEditor(T target, SharedPreferences sharedPreferences, String key) {
         this.sharedPreferences = sharedPreferences;
         this.key = key;
+        this.target = target;
     }
 
-    public void put(ValueType value) {
+    public T put(ValueType value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         putValue(editor, key, value);
-        editor.apply();
+        return target;
     }
 
     protected abstract void putValue(SharedPreferences.Editor editor, String key, ValueType value);
@@ -29,10 +31,10 @@ public abstract class TypeEditor<ValueType> {
         return getValue(sharedPreferences, key, def);
     }
 
-    public void remove() {
+    public T remove() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(key);
-        editor.apply();
+        return target;
     }
 
 }

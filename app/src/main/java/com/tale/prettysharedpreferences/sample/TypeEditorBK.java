@@ -1,4 +1,4 @@
-package com.tale.prettysharedpreferences;
+package com.tale.prettysharedpreferences.sample;
 
 import android.content.SharedPreferences;
 

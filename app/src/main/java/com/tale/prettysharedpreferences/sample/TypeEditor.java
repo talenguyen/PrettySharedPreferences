@@ -1,4 +1,4 @@
-package com.tale.prettysharedpreferences;
+package com.tale.prettysharedpreferences.sample;
 
 import android.content.SharedPreferences;
 
@@ -26,6 +26,7 @@ public abstract class TypeEditor<ValueType> {
     }
 
     protected abstract void putValue(SharedPreferences.Editor editor, String key, ValueType value);
+
     protected abstract ValueType getValue(SharedPreferences sharedPreferences, String key, ValueType def);
 
     public ValueType getOr(ValueType def) {

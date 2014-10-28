@@ -5,9 +5,9 @@ import android.content.SharedPreferences;
 /**
  * Created by TALE on 9/11/2014.
  */
-public class StringEditor extends TypeEditor<String> {
-    protected StringEditor(SharedPreferences sharedPreferences, String key) {
-        super(sharedPreferences, key);
+public class StringEditor<T extends PrettySharedPreferences> extends TypeEditor<String, T> {
+    protected StringEditor(T target, SharedPreferences sharedPreferences, String key) {
+        super(target, sharedPreferences, key);
     }
 
     @Override
