@@ -1,1 +1,1 @@
-include ':prettysharedpreferences'
+include ':prettysharedpreferences', ':app'
