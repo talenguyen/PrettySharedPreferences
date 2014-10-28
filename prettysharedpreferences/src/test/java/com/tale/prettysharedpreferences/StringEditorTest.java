@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
  * Created by TALE on 9/11/2014.
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(emulateSdk = 18, manifest = "sharepref/src/main/AndroidManifest.xml")
+@Config(emulateSdk = 18, manifest = "prettysharedpreferences/src/main/AndroidManifest.xml")
 public class StringEditorTest {
     private final String STRING_KEY = "string";
     @Mock
@@ -31,15 +31,16 @@ public class StringEditorTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         when(mockSharedPref.edit()).thenReturn(mockEditor);
-        stringEditor = new StringEditor(mockSharedPref, STRING_KEY);
+        stringEditor = new StringEditor(new PrettySharedPreferences(mockSharedPref) {
+        }, mockSharedPref, STRING_KEY);
     }
 
     @Test
     public void testPutValue() {
         String mockValue = "Giang";
-        stringEditor.put(mockValue);
+        stringEditor.put(mockValue).apply();
         verify(mockEditor).putString(STRING_KEY, mockValue);
-        verify(mockEditor).apply(); // Make sure apply() is called to commit data.
+        verify(mockEditor).apply();
     }
 
     @Test

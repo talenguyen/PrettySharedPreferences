@@ -8,30 +8,39 @@ import java.util.Map;
 /**
  * Created by TALE on 9/11/2014.
  */
-public class PrettySharedPreferences {
+public abstract class PrettySharedPreferences {
 
     private SharedPreferences sharedPreferences;
-    private static Map<String, TypeEditor> typeEditorMap;
+    private static final Map<String, TypeEditor> TYPE_EDITOR_MAP = new Hashtable<String, TypeEditor>();
 
     public PrettySharedPreferences(SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
-        typeEditorMap = new Hashtable<String, TypeEditor>();
     }
 
     public StringEditor getStringEditor(String key) {
-        TypeEditor typeEditor = typeEditorMap.get(key);
-        if (typeEditor == null) {
-            typeEditor = new StringEditor(this, sharedPreferences, key);
-            typeEditorMap.put(key, typeEditor);
-        } else if (!(typeEditor instanceof StringEditor)) {
-            throw new IllegalArgumentException(String.format("key %s is duplicated", key));
+        try {
+            final StringEditor stringEditor = (StringEditor) getInCache(key);
+            return stringEditor;
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
         }
 
-        return (StringEditor) typeEditor;
     }
 
     public void apply() {
         sharedPreferences.edit().apply();
     }
+
+    private TypeEditor getInCache(String key) throws ClassCastException {
+        TypeEditor typeEditor = TYPE_EDITOR_MAP.get(key);
+        if (typeEditor == null) {
+            typeEditor = new StringEditor(this, sharedPreferences, key);
+            TYPE_EDITOR_MAP.put(key, typeEditor);
+        }
+
+        return typeEditor;
+    }
+
+
 
 }
