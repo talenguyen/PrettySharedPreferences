@@ -17,6 +17,15 @@ public abstract class PrettySharedPreferences {
         this.sharedPreferences = sharedPreferences;
     }
 
+    /**
+     * Call to get a {@link com.tale.prettysharedpreferences.StringEditor} object for the specific
+     * key. <code>NOTE:</code> There is a unique {@link com.tale.prettysharedpreferences.TypeEditor}
+     * object for a unique key.
+     *
+     * @param key The name of the preference.
+     * @return {@link com.tale.prettysharedpreferences.StringEditor} object to be store or retrieve
+     * a {@link java.lang.String} value.
+     */
     protected StringEditor getStringEditor(String key) {
         try {
             final StringEditor stringEditor = (StringEditor) getInCache(key);
@@ -27,6 +36,15 @@ public abstract class PrettySharedPreferences {
 
     }
 
+    /**
+     * Call to get a {@link com.tale.prettysharedpreferences.IntegerEditor} object for the specific
+     * key. <code>NOTE:</code> There is a unique {@link com.tale.prettysharedpreferences.TypeEditor}
+     * object for a unique key.
+     *
+     * @param key The name of the preference.
+     * @return {@link com.tale.prettysharedpreferences.IntegerEditor} object to be store or retrieve
+     * a {@link java.lang.Integer} value.
+     */
     protected IntegerEditor getIntegerEditor(String key) {
         try {
             final IntegerEditor integerEditor = (IntegerEditor) getInCache(key);
@@ -37,6 +55,14 @@ public abstract class PrettySharedPreferences {
 
     }
 
+    /**
+     * Call to get a {@link com.tale.prettysharedpreferences.BooleanEditor} object for the specific
+     * key. <code>NOTE:</code> There is a unique {@link com.tale.prettysharedpreferences.TypeEditor}
+     * object for a unique key.
+     * @param key The name of the preference.
+     * @return {@link com.tale.prettysharedpreferences.BooleanEditor} object to be store or retrieve
+     * a {@link java.lang.Boolean} value.
+     */
     protected BooleanEditor getBooleanEditor(String key) {
         try {
             final BooleanEditor booleanEditor = (BooleanEditor) getInCache(key);
@@ -47,6 +73,14 @@ public abstract class PrettySharedPreferences {
 
     }
 
+    /**
+     * Call to get a {@link com.tale.prettysharedpreferences.LongEditor} object for the specific
+     * key. <code>NOTE:</code> There is a unique {@link com.tale.prettysharedpreferences.TypeEditor}
+     * object for a unique key.
+     * @param key The name of the preference.
+     * @return {@link com.tale.prettysharedpreferences.LongEditor} object to be store or retrieve
+     * a {@link java.lang.Long} value.
+     */
     protected LongEditor getLongEditor(String key) {
         try {
             final LongEditor longEditor = (LongEditor) getInCache(key);
@@ -57,6 +91,14 @@ public abstract class PrettySharedPreferences {
 
     }
 
+    /**
+     * Call to get a {@link com.tale.prettysharedpreferences.FloatEditor} object for the specific
+     * key. <code>NOTE:</code> There is a unique {@link com.tale.prettysharedpreferences.TypeEditor}
+     * object for a unique key.
+     * @param key The name of the preference.
+     * @return {@link com.tale.prettysharedpreferences.FloatEditor} object to be store or retrieve
+     * a {@link java.lang.Float} value.
+     */
     protected FloatEditor getFloatEditor(String key) {
         try {
             final FloatEditor floatEditor = (FloatEditor) getInCache(key);
@@ -67,6 +109,14 @@ public abstract class PrettySharedPreferences {
 
     }
 
+    /**
+     * Call to get a {@link com.tale.prettysharedpreferences.DoubleEditor} object for the specific
+     * key. <code>NOTE:</code> There is a unique {@link com.tale.prettysharedpreferences.TypeEditor}
+     * object for a unique key.
+     * @param key The name of the preference.
+     * @return {@link com.tale.prettysharedpreferences.DoubleEditor} object to be store or retrieve
+     * a {@link java.lang.Double} value.
+     */
     protected DoubleEditor getDoubleEditor(String key) {
         try {
             final DoubleEditor doubleEditor = (DoubleEditor) getInCache(key);
@@ -77,6 +127,10 @@ public abstract class PrettySharedPreferences {
 
     }
 
+    /**
+     * Call to commit the change.
+     * @see android.content.SharedPreferences.Editor#apply()
+     */
     public void apply() {
         sharedPreferences.edit().apply();
     }
