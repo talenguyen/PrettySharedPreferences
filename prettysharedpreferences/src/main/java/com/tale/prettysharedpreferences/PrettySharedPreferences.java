@@ -17,10 +17,60 @@ public abstract class PrettySharedPreferences {
         this.sharedPreferences = sharedPreferences;
     }
 
-    public StringEditor getStringEditor(String key) {
+    protected StringEditor getStringEditor(String key) {
         try {
             final StringEditor stringEditor = (StringEditor) getInCache(key);
             return stringEditor;
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
+        }
+
+    }
+
+    protected IntegerEditor getIntegerEditor(String key) {
+        try {
+            final IntegerEditor integerEditor = (IntegerEditor) getInCache(key);
+            return integerEditor;
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
+        }
+
+    }
+
+    protected BooleanEditor getBooleanEditor(String key) {
+        try {
+            final BooleanEditor booleanEditor = (BooleanEditor) getInCache(key);
+            return booleanEditor;
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
+        }
+
+    }
+
+    protected LongEditor getLongEditor(String key) {
+        try {
+            final LongEditor longEditor = (LongEditor) getInCache(key);
+            return longEditor;
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
+        }
+
+    }
+
+    protected FloatEditor getFloatEditor(String key) {
+        try {
+            final FloatEditor floatEditor = (FloatEditor) getInCache(key);
+            return floatEditor;
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
+        }
+
+    }
+
+    protected DoubleEditor getDoubleEditor(String key) {
+        try {
+            final DoubleEditor doubleEditor = (DoubleEditor) getInCache(key);
+            return doubleEditor;
         } catch (ClassCastException e) {
             throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
         }
