@@ -27,13 +27,14 @@ public abstract class PrettySharedPreferences {
      * a {@link java.lang.String} value.
      */
     protected StringEditor getStringEditor(String key) {
-        try {
-            final StringEditor stringEditor = (StringEditor) getInCache(key);
-            return stringEditor;
-        } catch (ClassCastException e) {
+        TypeEditor typeEditor = TYPE_EDITOR_MAP.get(key);
+        if (typeEditor == null) {
+            typeEditor = new StringEditor(this, sharedPreferences, key);
+            TYPE_EDITOR_MAP.put(key, typeEditor);
+        } else if (!(typeEditor instanceof StringEditor)) {
             throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
         }
-
+        return (StringEditor) typeEditor;
     }
 
     /**
@@ -46,13 +47,14 @@ public abstract class PrettySharedPreferences {
      * a {@link java.lang.Integer} value.
      */
     protected IntegerEditor getIntegerEditor(String key) {
-        try {
-            final IntegerEditor integerEditor = (IntegerEditor) getInCache(key);
-            return integerEditor;
-        } catch (ClassCastException e) {
+        TypeEditor typeEditor = TYPE_EDITOR_MAP.get(key);
+        if (typeEditor == null) {
+            typeEditor = new IntegerEditor(this, sharedPreferences, key);
+            TYPE_EDITOR_MAP.put(key, typeEditor);
+        } else if (!(typeEditor instanceof IntegerEditor)) {
             throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
         }
-
+        return (IntegerEditor) typeEditor;
     }
 
     /**
@@ -64,12 +66,14 @@ public abstract class PrettySharedPreferences {
      * a {@link java.lang.Boolean} value.
      */
     protected BooleanEditor getBooleanEditor(String key) {
-        try {
-            final BooleanEditor booleanEditor = (BooleanEditor) getInCache(key);
-            return booleanEditor;
-        } catch (ClassCastException e) {
+        TypeEditor typeEditor = TYPE_EDITOR_MAP.get(key);
+        if (typeEditor == null) {
+            typeEditor = new BooleanEditor(this, sharedPreferences, key);
+            TYPE_EDITOR_MAP.put(key, typeEditor);
+        } else if (!(typeEditor instanceof BooleanEditor)) {
             throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
         }
+        return (BooleanEditor) typeEditor;
 
     }
 
@@ -82,13 +86,14 @@ public abstract class PrettySharedPreferences {
      * a {@link java.lang.Long} value.
      */
     protected LongEditor getLongEditor(String key) {
-        try {
-            final LongEditor longEditor = (LongEditor) getInCache(key);
-            return longEditor;
-        } catch (ClassCastException e) {
+        TypeEditor typeEditor = TYPE_EDITOR_MAP.get(key);
+        if (typeEditor == null) {
+            typeEditor = new LongEditor(this, sharedPreferences, key);
+            TYPE_EDITOR_MAP.put(key, typeEditor);
+        } else if (!(typeEditor instanceof LongEditor)) {
             throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
         }
-
+        return (LongEditor) typeEditor;
     }
 
     /**
@@ -100,13 +105,14 @@ public abstract class PrettySharedPreferences {
      * a {@link java.lang.Float} value.
      */
     protected FloatEditor getFloatEditor(String key) {
-        try {
-            final FloatEditor floatEditor = (FloatEditor) getInCache(key);
-            return floatEditor;
-        } catch (ClassCastException e) {
+        TypeEditor typeEditor = TYPE_EDITOR_MAP.get(key);
+        if (typeEditor == null) {
+            typeEditor = new FloatEditor(this, sharedPreferences, key);
+            TYPE_EDITOR_MAP.put(key, typeEditor);
+        } else if (!(typeEditor instanceof FloatEditor)) {
             throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
         }
-
+        return (FloatEditor) typeEditor;
     }
 
     /**
@@ -118,12 +124,14 @@ public abstract class PrettySharedPreferences {
      * a {@link java.lang.Double} value.
      */
     protected DoubleEditor getDoubleEditor(String key) {
-        try {
-            final DoubleEditor doubleEditor = (DoubleEditor) getInCache(key);
-            return doubleEditor;
-        } catch (ClassCastException e) {
+        TypeEditor typeEditor = TYPE_EDITOR_MAP.get(key);
+        if (typeEditor == null) {
+            typeEditor = new DoubleEditor(this, sharedPreferences, key);
+            TYPE_EDITOR_MAP.put(key, typeEditor);
+        } else if (!(typeEditor instanceof DoubleEditor)) {
             throw new IllegalArgumentException(String.format("key %s is already used for other type", key));
         }
+        return (DoubleEditor) typeEditor;
 
     }
 
@@ -134,17 +142,5 @@ public abstract class PrettySharedPreferences {
     public void apply() {
         sharedPreferences.edit().apply();
     }
-
-    private TypeEditor getInCache(String key) throws ClassCastException {
-        TypeEditor typeEditor = TYPE_EDITOR_MAP.get(key);
-        if (typeEditor == null) {
-            typeEditor = new StringEditor(this, sharedPreferences, key);
-            TYPE_EDITOR_MAP.put(key, typeEditor);
-        }
-
-        return typeEditor;
-    }
-
-
 
 }
