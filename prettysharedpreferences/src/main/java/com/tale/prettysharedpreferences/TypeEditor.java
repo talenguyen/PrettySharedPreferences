@@ -25,8 +25,10 @@ public abstract class TypeEditor<ValueType, T extends PrettySharedPreferences> {
      * object, so you can chain put calls together.
      */
     public T put(ValueType value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        putValue(editor, key, value);
+        if (target.editing == null) {
+            target.editing = sharedPreferences.edit();
+        }
+        putValue(target.editing, key, value);
         return target;
     }
 

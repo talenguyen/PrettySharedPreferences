@@ -11,6 +11,7 @@ import java.util.Map;
 public abstract class PrettySharedPreferences {
 
     private SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editing;
     private static final Map<String, TypeEditor> TYPE_EDITOR_MAP = new Hashtable<String, TypeEditor>();
 
     public PrettySharedPreferences(SharedPreferences sharedPreferences) {
@@ -140,7 +141,8 @@ public abstract class PrettySharedPreferences {
      * @see android.content.SharedPreferences.Editor#apply()
      */
     public void apply() {
-        sharedPreferences.edit().apply();
+        editing.apply();
+        editing = null;
     }
 
 }
