@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:columnCount="2"
+    android:padding="16dp">
+
+    <TextView
+        android:text="Integer value"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/tvIntegerVal"
+        android:text="Not set" />
+</android.support.v7.widget.GridLayout>

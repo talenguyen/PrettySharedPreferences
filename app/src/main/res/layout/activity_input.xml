@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <android.support.v7.widget.GridLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:columnCount="3">
+
+        <TextView android:text="Integer" />
+
+        <EditText
+            android:id="@+id/etInteger"
+            android:layout_marginLeft="16dip"
+            app:layout_gravity="fill_horizontal"
+            android:hint="Enter integer value" />
+
+        <Button
+            android:id="@+id/btSaveInteger"
+            android:layout_marginLeft="16dip"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/btSaveAll"
+            android:text="Save All"
+            app:layout_columnSpan="3" />
+    </android.support.v7.widget.GridLayout>
+</RelativeLayout>

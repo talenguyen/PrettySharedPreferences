@@ -2,7 +2,7 @@ package com.tale.prettysharedpreferences.sample;
 
 import android.content.SharedPreferences;
 
-import com.tale.prettysharedpreferences.StringEditor;
+import com.tale.prettysharedpreferences.IntegerEditor;
 
 /**
  * Created by TALE on 10/28/2014.
@@ -13,7 +13,7 @@ public class PrefManager extends com.tale.prettysharedpreferences.PrettySharedPr
         super(sharedPreferences);
     }
 
-    public StringEditor<PrefManager> username() {
-        return getStringEditor("username");
+    public IntegerEditor<PrefManager> integerValue() {
+        return getIntegerEditor("integerValue");
     }
 }
