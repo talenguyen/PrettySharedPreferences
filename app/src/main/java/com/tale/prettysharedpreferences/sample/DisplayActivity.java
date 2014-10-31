@@ -56,11 +56,11 @@ public class DisplayActivity extends ActionBarActivity {
         }
         final Float floatVal = prefManager.floatValue().getOr(Float.MIN_VALUE);
         if (floatVal != Float.MIN_VALUE) {
-            tvFloatVal.setText(String.valueOf(floatVal));
+            tvFloatVal.setText(String.format("%f", floatVal));
         }
         final Double doubleVal = prefManager.doubleValue().getOr(Double.MIN_VALUE);
         if (doubleVal != Double.MIN_VALUE) {
-            tvDoubleVal.setText(String.valueOf(doubleVal));
+            tvDoubleVal.setText(String.format("%f", doubleVal));
         }
     }
 }

@@ -81,7 +81,7 @@
             android:id="@+id/etFloat"
             android:layout_marginLeft="16dip"
             android:hint="Enter float value"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             app:layout_gravity="fill_horizontal" />
 
         <Button
@@ -97,7 +97,7 @@
             android:id="@+id/etDouble"
             android:layout_marginLeft="16dip"
             android:hint="Enter double value"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             app:layout_gravity="fill_horizontal" />
 
         <Button
