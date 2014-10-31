@@ -56,8 +56,10 @@ public abstract class TypeEditor<ValueType, T extends PrettySharedPreferences> {
      * put calls together.
      */
     public T remove() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(key);
+        if (target.editing == null) {
+            target.editing = sharedPreferences.edit();
+        }
+        target.editing.remove(key);
         return target;
     }
 
