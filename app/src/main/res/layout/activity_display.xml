@@ -7,6 +7,25 @@
     app:columnCount="2"
     android:padding="16dp">
 
+    <!--Row-->
+    <TextView
+        android:text="String value"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/tvStringVal"
+        android:text="Not set" />
+
+    <!--Row-->
+    <TextView
+        android:text="Boolean value"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/tvBooleanVal"
+        android:text="Not set" />
+
+    <!--Row-->
     <TextView
         android:text="Integer value"
         android:layout_marginRight="16dp" />
@@ -14,4 +33,32 @@
     <TextView
         android:id="@+id/tvIntegerVal"
         android:text="Not set" />
+
+    <!--Row-->
+    <TextView
+        android:text="Long value"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/tvLongVal"
+        android:text="Not set" />
+
+    <!--Row-->
+    <TextView
+        android:text="Float value"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/tvFloatVal"
+        android:text="Not set" />
+
+    <!--Row-->
+    <TextView
+        android:text="Double value"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/tvDoubleVal"
+        android:text="Not set" />
+
 </android.support.v7.widget.GridLayout>

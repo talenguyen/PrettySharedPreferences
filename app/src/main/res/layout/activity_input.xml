@@ -5,27 +5,112 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+
     <android.support.v7.widget.GridLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:columnCount="3">
+
+        <!--row-->
+
+        <TextView android:text="String" />
+
+        <EditText
+            android:id="@+id/etString"
+            android:layout_marginLeft="16dip"
+            android:hint="Enter string value"
+            app:layout_gravity="fill_horizontal" />
+
+        <Button
+            android:id="@+id/btSaveString"
+            android:layout_marginLeft="16dip"
+            android:text="Save" />
+
+        <!--row-->
+
+        <TextView android:text="Boolean" />
+
+        <EditText
+            android:id="@+id/etBoolean"
+            android:layout_marginLeft="16dip"
+            android:hint="Enter boolean value"
+            app:layout_gravity="fill_horizontal" />
+
+        <Button
+            android:id="@+id/btSaveBoolean"
+            android:layout_marginLeft="16dip"
+            android:text="Save" />
+
+        <!--row-->
 
         <TextView android:text="Integer" />
 
         <EditText
             android:id="@+id/etInteger"
             android:layout_marginLeft="16dip"
-            app:layout_gravity="fill_horizontal"
-            android:hint="Enter integer value" />
+            android:hint="Enter integer value"
+            android:inputType="number"
+            app:layout_gravity="fill_horizontal" />
 
         <Button
             android:id="@+id/btSaveInteger"
             android:layout_marginLeft="16dip"
             android:text="Save" />
 
+        <!--row-->
+
+        <TextView android:text="Long" />
+
+        <EditText
+            android:id="@+id/etLong"
+            android:layout_marginLeft="16dip"
+            android:hint="Enter long value"
+            android:inputType="number"
+            app:layout_gravity="fill_horizontal" />
+
+        <Button
+            android:id="@+id/btSaveLong"
+            android:layout_marginLeft="16dip"
+            android:text="Save" />
+
+        <!--row-->
+
+        <TextView android:text="Float" />
+
+        <EditText
+            android:id="@+id/etFloat"
+            android:layout_marginLeft="16dip"
+            android:hint="Enter float value"
+            android:inputType="number"
+            app:layout_gravity="fill_horizontal" />
+
+        <Button
+            android:id="@+id/btSaveFloat"
+            android:layout_marginLeft="16dip"
+            android:text="Save" />
+
+        <!--row-->
+
+        <TextView android:text="Double" />
+
+        <EditText
+            android:id="@+id/etDouble"
+            android:layout_marginLeft="16dip"
+            android:hint="Enter double value"
+            android:inputType="number"
+            app:layout_gravity="fill_horizontal" />
+
+        <Button
+            android:id="@+id/btSaveDouble"
+            android:layout_marginLeft="16dip"
+            android:text="Save" />
+
         <Button
             android:id="@+id/btSaveAll"
-            android:text="Save All"
-            app:layout_columnSpan="3" />
+            android:text="Save All" />
+
+        <Button
+            android:id="@+id/btOpenDisplay"
+            android:text="Display value" />
     </android.support.v7.widget.GridLayout>
 </RelativeLayout>
