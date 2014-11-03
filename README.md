@@ -1,8 +1,7 @@
 PrettySharedPreferences
 =======================
 
-PrettySharedPreferences is a lightweight library for help you deal with SharedPreferences more easy and reduce many 
-boilplace code.
+PrettySharedPreferences is a lightweight library for help you deal with SharedPreferences more easy and reduce most of boilplace code.
 
 Features
 ========
