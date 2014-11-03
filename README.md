@@ -62,9 +62,7 @@ To get value
     String username = prefManager.username().getOr("<default value>");
     long userId = prefManager.userId().getOr(0l);
 ```
-That's it. 
-It's easy, right?
-Enjoy!
+That's it. Enjoy!
 
 License
 =======
