@@ -1,30 +1,82 @@
 PrettySharedPreferences
 =======================
 
-PrettySharedPreferences is a lightweight library for help you deal with SharedPreferences more easy and reduce many 
-boilplace code.
+PrettySharedPreferences is a lightweight library for help you deal with SharedPreferences more easy and reduce most of boilplace code.
 
 Features
 ========
 
  * Easy to use
- * Takes care of most of the boilerplate code
- * Tiny, only ~5k!
- * Flexible
+ * Reduce most of boilplace code.
+
+Integration
+===========
+### Gradle
+```groovy
+dependencies {
+    compile 'com.github.talenguyen:PrettySharedPreferences:1.0.1'
+}
+```
+### Maven
+``` xml
+<dependency>
+  <groupId>com.github.talenguyen</groupId>
+  <artifactId>PrettySharedPreferences</artifactId>
+  <version>1.0.1</version>
+  <type>aar</type>
+</dependency>
+```
 
 Usage
 =====
-Add the library as a dependency to your `build.gradle` in case you use Gradle:
 
-```groovy
-dependencies {
-    compile 'com.github.talenguyen:PrettySharedPreferences:1.+'
+Create a class and extends from PrettySharedPreferences class. Let's say PrefManager.
+
+``` java
+public class PrefManager extends PrettySharedPreferences {
+
+    public PrefManager(SharedPreferences sharedPreferences) {
+        super(sharedPreferences);
+    }
+
+    public StringEditor<PrefManager> username() {
+        return getStringEditor("username");
+    }
+    
+    public LongEditor<PrefManager> userId() {
+        return getLongEditor("userId");
+    }
+
+    ...
 }
+
 ```
+Create an instance 
+``` java
+    PrefManager prefManager = new PrefManager(getSharedPreferences("MyPref", MODE_PRIVATE));
+```
+To put a single value
+``` java
+    prefManager.username().put("tale").apply();
+```
+To put multiple values
+``` java
+    prefManager.username().put("tale")
+        .userId().put(1)
+        .apply();
+```
+To get value
+``` java
+    String username = prefManager.username().getOr("<default value>");
+    long userId = prefManager.userId().getOr(0l);
+```
+That's it. Enjoy!
+
 License
 =======
 
-    Copyright 2014 Tale Nguyen
+    
+    Copyright 2014 Giang Nguyen
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
