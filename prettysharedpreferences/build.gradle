@@ -1,79 +1,20 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url 'http://repo.springsource.org/plugins-release' }
     }
     dependencies {
-        classpath 'com.github.jcandksolutions.gradle:android-unit-test:1.5.+'
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.6'
     }
 }
 
-apply plugin: 'com.android.library'
+apply plugin: 'java'
+apply plugin: 'propdeps'
+apply from: file('../deploy.gradle')
 
-android {
-    compileSdkVersion 20
-    buildToolsVersion "20.0.0"
-
-    defaultConfig {
-        applicationId "com.tale.prettysharedpreferences"
-        minSdkVersion 9
-        targetSdkVersion 20
-        versionName project.VERSION_NAME
-        versionCode Integer.parseInt(project.VERSION_CODE)
-    }
-    buildTypes {
-        release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            applicationIdSuffix ".debug"
-        }
-    }
-
-    sourceSets {
-        main {
-            java {
-                srcDir 'src/main/java'
-            }
-            resources {
-                srcDir 'src/../lib'
-            }
-        }
-    }
-
-    packagingOptions {
-        exclude 'LICENSE'
-        exclude 'NOTICE'
-        exclude 'asm-license.txt'
-    }
-}
-apply plugin: 'android-unit-test'
-
-androidUnitTest {
-    testReleaseBuildType true
-}
+targetCompatibility = '1.6'
+sourceCompatibility = '1.6'
 
 dependencies {
-    repositories {
-        mavenCentral()
-    }
-    testCompile 'junit:junit:4.10'
-    testCompile 'org.robolectric:robolectric:2.3'
-    testCompile 'org.assertj:assertj-core:1.6.1'
-    testCompile 'org.mockito:mockito-all:1.9.5'
+    provided 'com.google.android:android:4.1.1.4'
 }
-
-task clearJar(type: Delete) {
-    delete 'build/libs/' + POM_ARTIFACT_ID + '_' + VERSION_NAME + '.jar'
-}
-
-task makeJar(type: Copy) {
-    from('build/intermediates/bundles/release/')
-    into('release/')
-    include('classes.jar')
-    rename ('classes.jar', POM_ARTIFACT_ID + '_' +  VERSION_NAME + '.jar')
-}
-
-makeJar.dependsOn(clearJar, build)
-
-apply from: '../maven_push.gradle'

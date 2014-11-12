@@ -45,6 +45,5 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.google.guava', module: 'guava'
     }
-//    compile 'com.github.talenguyen:PrettySharedPreferences:1.0.0'
 }
 

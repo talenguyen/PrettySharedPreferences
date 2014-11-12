@@ -1,0 +1,84 @@
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+version = VERSION_NAME//"0.2"
+
+def isReleaseBuild() {
+    !version.contains("SNAPSHOT")
+}
+
+def sonatypeRepositoryUrl
+
+if (isReleaseBuild()) {
+    println "RELEASE BUILD $version"
+    sonatypeRepositoryUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+} else {
+    println "DEBUG BUILD $version"
+    sonatypeRepositoryUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+}
+
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { deployment -> signing.signPom(deployment) }
+
+                repository(url: sonatypeRepositoryUrl) {
+                    authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+                }
+
+                pom.project {
+                    name PROJECT_NAME//'PrettySharedPreferences'
+                    groupId GROUP//'com.github.talenguyen'
+                    description POM_DESCRIPTION//'Port of Google AutoValue for the Android platform'
+                    url POM_URL//'https://github.com/frankiesardo/auto-parcel'
+                    inceptionYear '2014'
+
+                    scm {
+                        url POM_SCM_URL//'https://github.com/frankiesardo/auto-parcel'
+                        connection POM_SCM_CONNECTION
+//'scm:https://frankiesardo@github.com/frankiesardo/auto-parcel.git'
+                        developerConnection POM_SCM_DEV_CONNECTION
+//'scm:git@github.com:frankiesardo/auto-parcel.git'
+                    }
+
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id POM_DEVELOPER_ID//'frankiesardo'
+                            name POM_DEVELOPER_NAME//'Frankie Sardo'
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+        sign configurations.archives
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+}
