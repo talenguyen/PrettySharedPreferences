@@ -1,7 +1,7 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-version = VERSION_NAME//"0.2"
+version = VERSION_NAME
 
 def isReleaseBuild() {
     !version.contains("SNAPSHOT")
@@ -29,18 +29,16 @@ afterEvaluate { project ->
                 }
 
                 pom.project {
-                    name PROJECT_NAME//'PrettySharedPreferences'
-                    groupId GROUP//'com.github.talenguyen'
-                    description POM_DESCRIPTION//'Port of Google AutoValue for the Android platform'
-                    url POM_URL//'https://github.com/frankiesardo/auto-parcel'
+                    name PROJECT_NAME
+                    groupId GROUP
+                    description POM_DESCRIPTION
+                    url POM_URL
                     inceptionYear '2014'
 
                     scm {
-                        url POM_SCM_URL//'https://github.com/frankiesardo/auto-parcel'
+                        url POM_SCM_URL
                         connection POM_SCM_CONNECTION
-//'scm:https://frankiesardo@github.com/frankiesardo/auto-parcel.git'
                         developerConnection POM_SCM_DEV_CONNECTION
-//'scm:git@github.com:frankiesardo/auto-parcel.git'
                     }
 
                     licenses {
@@ -53,8 +51,8 @@ afterEvaluate { project ->
 
                     developers {
                         developer {
-                            id POM_DEVELOPER_ID//'frankiesardo'
-                            name POM_DEVELOPER_NAME//'Frankie Sardo'
+                            id POM_DEVELOPER_ID
+                            name POM_DEVELOPER_NAME
                         }
                     }
                 }
