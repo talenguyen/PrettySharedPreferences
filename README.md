@@ -10,16 +10,25 @@ Features
  * Reduce most of boilplace code.
 
 Integration
-=====
-Add the library as a dependency to your `build.gradle` in case you use Gradle:
-
+===========
+### Gradle
 ```groovy
 dependencies {
     compile 'com.github.talenguyen:PrettySharedPreferences:1.0.1'
 }
 ```
+### Maven
+``` xml
+<dependency>
+  <groupId>com.github.talenguyen</groupId>
+  <artifactId>PrettySharedPreferences</artifactId>
+  <version>1.0.1</version>
+  <type>aar</type>
+</dependency>
+```
 
-### Usage
+Usage
+=====
 
 Create a class and extends from PrettySharedPreferences class. Let's say PrefManager.
 
@@ -66,7 +75,8 @@ That's it. Enjoy!
 License
 =======
 
-    Copyright 2014 Tale Nguyen
+    
+    Copyright 2014 Giang Nguyen
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
