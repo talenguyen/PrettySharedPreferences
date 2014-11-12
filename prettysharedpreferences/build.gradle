@@ -10,11 +10,19 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'propdeps'
+apply plugin: 'propdeps-idea'
 apply from: file('../deploy.gradle')
 
 targetCompatibility = '1.6'
 sourceCompatibility = '1.6'
 
 dependencies {
+    repositories {
+        mavenCentral()
+    }
+    testCompile 'junit:junit:4.10'
+    testCompile 'org.assertj:assertj-core:1.6.1'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'com.google.android:android:4.1.1.4'
     provided 'com.google.android:android:4.1.1.4'
 }

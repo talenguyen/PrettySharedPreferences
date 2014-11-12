@@ -2,13 +2,10 @@ package com.tale.prettysharedpreferences;
 
 import android.content.SharedPreferences;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import junit.framework.TestCase;
+
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,9 +13,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by TALE on 9/11/2014.
  */
-@RunWith(RobolectricTestRunner.class)
-@Config(emulateSdk = 18, manifest = "prettysharedpreferences/src/main/AndroidManifest.xml")
-public class StringEditorTest {
+public class StringEditorTest extends TestCase {
     private final String STRING_KEY = "string";
     @Mock
     SharedPreferences mockSharedPref;
@@ -27,15 +22,15 @@ public class StringEditorTest {
 
     private StringEditor stringEditor;
 
-    @Before
-    public void setUp() throws Exception {
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
         MockitoAnnotations.initMocks(this);
         when(mockSharedPref.edit()).thenReturn(mockEditor);
         stringEditor = new StringEditor(new PrettySharedPreferences(mockSharedPref) {
         }, mockSharedPref, STRING_KEY);
     }
 
-    @Test
     public void testPutValue() {
         String mockValue = "Giang";
         stringEditor.put(mockValue).apply();
@@ -43,7 +38,6 @@ public class StringEditorTest {
         verify(mockEditor).apply();
     }
 
-    @Test
     public void testGetValue() {
         String mockValue = "Giang";
         stringEditor.getOr(mockValue);
