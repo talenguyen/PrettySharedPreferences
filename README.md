@@ -27,7 +27,7 @@ or
 
 ### Maven
 ``` xml
- <dependency>
+<dependency>
   <groupId>com.github.talenguyen</groupId>
   <artifactId>prettysharedpreferences</artifactId>
   <version>1.0.1</version>
