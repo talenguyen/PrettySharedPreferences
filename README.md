@@ -9,21 +9,28 @@ Features
  * Easy to use
  * Reduce most of boilplace code.
 
-Integration
-===========
+Download
+========
+### JAR
+Download [the latest JAR][1]
+
+or
+
 ### Gradle
 ```groovy
 dependencies {
-    compile 'com.github.talenguyen:PrettySharedPreferences:1.0.1'
+    compile 'com.github.talenguyen:prettysharedpreferences:1.0.1'
 }
 ```
+
+or
+
 ### Maven
 ``` xml
-<dependency>
+ <dependency>
   <groupId>com.github.talenguyen</groupId>
-  <artifactId>PrettySharedPreferences</artifactId>
+  <artifactId>prettysharedpreferences</artifactId>
   <version>1.0.1</version>
-  <type>aar</type>
 </dependency>
 ```
 
@@ -89,3 +96,5 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+[1]: http://search.maven.org/remotecontent?filepath=com/github/talenguyen/prettysharedpreferences/1.0.1/prettysharedpreferences-1.0.1.jar
