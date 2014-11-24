@@ -1,6 +1,7 @@
 package com.tale.prettysharedpreferences;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import java.util.Hashtable;
 import java.util.Map;
@@ -141,7 +142,11 @@ public abstract class PrettySharedPreferences {
      * @see android.content.SharedPreferences.Editor#apply()
      */
     public void apply() {
-        editing.apply();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            editing.apply();
+        } else {
+            editing.commit();
+        }
         editing = null;
     }
 
