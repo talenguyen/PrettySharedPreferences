@@ -21,14 +21,10 @@ public abstract class TypeEditor<ValueType, T extends PrettySharedPreferences> {
      * Set a value in preferences, to be written back once apply() are called.
      *
      * @param value The value to be stored.
-     * @return Returns a reference to the same {@link com.tale.prettysharedpreferences.PrettySharedPreferences}
-     * object, so you can chain put calls together.
+     * @return Returns a reference to the same object, so you can chain put calls together.
      */
     public T put(ValueType value) {
-        if (target.editing == null) {
-            target.editing = sharedPreferences.edit();
-        }
-        putValue(target.editing, key, value);
+        putValue(target.editor(), key, value);
         return target;
     }
 
@@ -51,15 +47,10 @@ public abstract class TypeEditor<ValueType, T extends PrettySharedPreferences> {
      * actual preferences once commit() is called. Note that when committing back to the
      * preferences, all removals are done first, regardless of whether you called remove before
      * or after put methods on this editor.
-     * @return Returns a reference to the same
-     * {@link com.tale.prettysharedpreferences.PrettySharedPreferences} object, so you can chain
-     * put calls together.
+     * @return Returns a reference to the same object, so you can chain put calls together.
      */
     public T remove() {
-        if (target.editing == null) {
-            target.editing = sharedPreferences.edit();
-        }
-        target.editing.remove(key);
+        target.editor().remove(key);
         return target;
     }
 
