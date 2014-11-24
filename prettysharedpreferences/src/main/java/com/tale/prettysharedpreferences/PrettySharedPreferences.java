@@ -9,10 +9,10 @@ import java.util.Map;
 /**
  * Created by TALE on 9/11/2014.
  */
-public abstract class PrettySharedPreferences {
+public abstract class PrettySharedPreferences<T extends PrettySharedPreferences> {
 
     private SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editing;
+    private SharedPreferences.Editor editing;
     private static final Map<String, TypeEditor> TYPE_EDITOR_MAP = new Hashtable<String, TypeEditor>();
 
     public PrettySharedPreferences(SharedPreferences sharedPreferences) {
@@ -148,6 +148,24 @@ public abstract class PrettySharedPreferences {
             editing.commit();
         }
         editing = null;
+    }
+
+    /**
+     * Call to clear all values which is hold by this.
+     *
+     * @return Returns a reference to the same object, so you can chain put calls together.
+     * @see android.content.SharedPreferences.Editor#clear()
+     */
+    public T clear() {
+        editor().clear();
+        return (T) this;
+    }
+
+    synchronized SharedPreferences.Editor editor() {
+        if (editing == null) {
+            editing = sharedPreferences.edit();
+        }
+        return editing;
     }
 
 }
