@@ -125,6 +125,35 @@ public class InputActivityTest extends ActivityInstrumentationTestCase2<InputAct
         checkEqualFloat(withId(R.id.tvDoubleVal), doubleVal);
     }
 
+    public void testClearAll() {
+        // Click clear all
+        onView(withId(R.id.btClear)).perform(click());
+
+        // Check
+        onView(withId(R.id.tvStringVal)).check(matches(withText("Not set")));
+        onView(withId(R.id.tvBooleanVal)).check(matches(withText("false")));
+        onView(withId(R.id.tvIntegerVal)).check(matches(withText("Not set")));
+        onView(withId(R.id.tvLongVal)).check(matches(withText("Not set")));
+        onView(withId(R.id.tvFloatVal)).check(matches(withText("Not set")));
+        onView(withId(R.id.tvDoubleVal)).check(matches(withText("Not set")));
+    }
+
+    public void testThreadSafe() {
+        // Save string 1.
+        final String string1 = getStringValue();
+        onView(withId(R.id.etString1)).perform(typeText(string1));
+
+        // Save string 2.
+        final String string2 = getStringValue();
+        onView(withId(R.id.etString2)).perform(typeText(string2));
+
+        onView(withId(R.id.btSaveStringOnThread)).perform(click());
+
+        // Check
+        onView(withId(R.id.tvString1Val)).check(matches(withText(string1)));
+        onView(withId(R.id.tvString2Val)).check(matches(withText(string2)));
+    }
+
     private static void checkEqualFloat(Matcher<View> matcher, String expectValue) {
         final String text = getText(matcher);
         assertTrue(nearlyEqual(Float.parseFloat(expectValue), Float.parseFloat(text), 0.0001f));

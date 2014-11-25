@@ -60,5 +60,21 @@
     <TextView
         android:id="@+id/tvDoubleVal"
         android:text="Not set" />
+    <!--Row-->
+    <TextView
+        android:text="String1 value"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/tvString1Val"
+        android:text="Not set" />
+    <!--Row-->
+    <TextView
+        android:text="String2 value"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/tvString2Val"
+        android:text="Not set" />
 
 </android.support.v7.widget.GridLayout>

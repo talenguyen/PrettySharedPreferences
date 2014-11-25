@@ -49,7 +49,7 @@
             android:id="@+id/etInteger"
             android:layout_marginLeft="16dip"
             android:hint="Enter integer value"
-            android:inputType="number"
+            android:inputType="numberSigned"
             app:layout_gravity="fill_horizontal" />
 
         <Button
@@ -65,7 +65,7 @@
             android:id="@+id/etLong"
             android:layout_marginLeft="16dip"
             android:hint="Enter long value"
-            android:inputType="number"
+            android:inputType="numberSigned"
             app:layout_gravity="fill_horizontal" />
 
         <Button
@@ -108,9 +108,52 @@
         <Button
             android:id="@+id/btSaveAll"
             android:text="Save All" />
+        <Button
+            android:id="@+id/btClear"
+            android:text="Clear All"
+            app:layout_columnSpan="2"/>
+
+        <!--row-->
+
+        <View
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="16dp"
+            app:layout_columnSpan="3"/>
+
+        <TextView android:text="Thread Safe:"
+            app:layout_columnSpan="3"/>
+
+        <!--row-->
+        <TextView android:text="String 1" />
+
+        <EditText
+            android:id="@+id/etString1"
+            android:layout_marginLeft="16dip"
+            android:hint="Enter string value"
+            app:layout_columnSpan="2"
+            app:layout_gravity="fill_horizontal" />
+
+        <!--row-->
+        <TextView android:text="String 2" />
+
+        <EditText
+            android:id="@+id/etString2"
+            android:layout_marginLeft="16dip"
+            android:hint="Enter string value"
+            app:layout_gravity="fill_horizontal"
+            app:layout_columnSpan="2"/>
+
+        <Button
+            android:id="@+id/btSaveStringOnThread"
+            android:layout_marginLeft="16dip"
+            android:text="Save On Thread" />
 
         <Button
             android:id="@+id/btOpenDisplay"
-            android:text="Display value" />
+            android:text="Display value"
+            app:layout_columnSpan="3"
+            app:layout_gravity="fill_horizontal"/>
     </android.support.v7.widget.GridLayout>
 </RelativeLayout>

@@ -1,14 +1,23 @@
 package com.tale.prettysharedpreferences.sample;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.tale.prettysharedpreferences.StringEditor;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by TALE on 10/28/2014.
@@ -26,8 +35,27 @@ public class InputActivity extends ActionBarActivity {
     EditText etFloat;
     @InjectView(R.id.etDouble)
     EditText etDouble;
+    @InjectView(R.id.etString1)
+    EditText etString1;
+    @InjectView(R.id.etString2)
+    EditText etString2;
 
     PrefManager prefManager;
+
+    public static class StringEditTask extends AsyncTask<String, Void, Void> {
+        final StringEditor stringEditor;
+
+        public StringEditTask(StringEditor stringEditor) {
+            this.stringEditor = stringEditor;
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            SystemClock.sleep(1000);
+            stringEditor.put(params[0]).apply();
+            return null;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +133,17 @@ public class InputActivity extends ActionBarActivity {
         }
     }
 
+    @OnClick(R.id.btClear)
+    public void clearValue() {
+        prefManager.clear().apply();
+        Toast.makeText(this, "Value is clear!", Toast.LENGTH_SHORT).show();
+        startActivity(DisplayActivity.class);
+    }
+
     @OnClick(R.id.btSaveAll)
     public void saveAll() {
         String stringVal = getStringValue();
-        Boolean booleanVal = getBooleanValue();
+        boolean booleanVal = getBooleanValue();
         int intVal;
         try {
             intVal = getIntValue();
@@ -146,6 +181,39 @@ public class InputActivity extends ActionBarActivity {
     @OnClick(R.id.btOpenDisplay)
     public void openDisplayActivity() {
         startActivity(DisplayActivity.class);
+    }
+
+    int editingCount = 0;
+
+    public void saveOnThread(EditText editText, String key) {
+        final String value = editText.getText().toString();
+        if (TextUtils.isEmpty(value)) {
+            editText.setError(getString(R.string.error_empty));
+            return;
+        }
+
+        new StringEditTask(prefManager.string(key)) {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                editingCount--;
+                if (editingCount == 0) {
+                    startActivity(DisplayActivity.class);
+                }
+            }
+        }.execute(value);
+        editingCount++;
+    }
+
+    @OnClick(R.id.btSaveStringOnThread)
+    public void saveStringOnThread() {
+        saveOnThread(etString1, "string1");
+        saveOnThread(etString2, "string2");
     }
 
     private String getStringValue() {

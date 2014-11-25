@@ -13,7 +13,7 @@ import com.tale.prettysharedpreferences.StringEditor;
 /**
  * Created by TALE on 10/28/2014.
  */
-public class PrefManager extends PrettySharedPreferences {
+public class PrefManager extends PrettySharedPreferences<PrefManager> {
 
     public PrefManager(SharedPreferences sharedPreferences) {
         super(sharedPreferences);
@@ -40,5 +40,9 @@ public class PrefManager extends PrettySharedPreferences {
 
     public DoubleEditor<PrefManager> doubleValue() {
         return getDoubleEditor("doubleValue");
+    }
+
+    public StringEditor<PrefManager> string(String key) {
+        return getStringEditor(key);
     }
 }

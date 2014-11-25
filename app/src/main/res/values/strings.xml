@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PrettySharedPreferences</string>
+    <string name="error_empty">Enter value first.</string>
 </resources>
