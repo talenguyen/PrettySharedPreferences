@@ -1,5 +1,6 @@
 package com.tale.prettysharedpreferences;
 
+import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.os.Build;
 
@@ -138,19 +139,6 @@ public abstract class PrettySharedPreferences<T extends PrettySharedPreferences>
     }
 
     /**
-     * Call to commit the change.
-     * @see android.content.SharedPreferences.Editor#apply()
-     */
-    public void apply() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            editing.apply();
-        } else {
-            editing.commit();
-        }
-        editing = null;
-    }
-
-    /**
      * Call to clear all values which is hold by this.
      *
      * @return Returns a reference to the same object, so you can chain put calls together.
@@ -159,6 +147,48 @@ public abstract class PrettySharedPreferences<T extends PrettySharedPreferences>
     public T clear() {
         editor().clear();
         return (T) this;
+    }
+
+    /**
+     * Call to discard all changes but not apply or commit yet.
+     *
+     * @return Returns a reference to the same object, so you can chain put calls together.
+     */
+    public T discard() {
+        if (editing != null) {
+            editing = null;
+        }
+        return (T) this;
+    }
+
+    /**
+     * Call to apply changes.
+     * @see android.content.SharedPreferences.Editor#apply()
+     */
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+    public void apply() {
+        if (editing == null) {
+            return;
+        }
+        try {
+            editing.apply();
+        } catch (Exception ex) {
+            editing.commit(); // Fallback in case low api lever.
+        }
+        editing = null;
+    }
+
+    /**
+     * Call to commit changes.
+     * @see android.content.SharedPreferences.Editor#commit()
+     */
+    public boolean commit() {
+        if (editing == null) {
+            return false;
+        }
+        final boolean result = editing.commit();
+        editing = null;
+        return result;
     }
 
     synchronized SharedPreferences.Editor editor() {
