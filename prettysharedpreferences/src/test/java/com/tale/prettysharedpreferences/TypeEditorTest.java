@@ -18,19 +18,19 @@ import static org.mockito.Mockito.when;
 public class TypeEditorTest extends TestCase {
     private final String STRING_KEY = "string";
     @Mock
-    SharedPreferences mockSharedPref;
+    SharedPreferences mMockSharedPref;
     @Mock
-    SharedPreferences.Editor mockEditor;
+    SharedPreferences.Editor mMockEditor;
 
-    private TypeEditor autoCommitTypeEditor;
+    private TypeEditor mTypeEditor;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         MockitoAnnotations.initMocks(this);
-        when(mockSharedPref.edit()).thenReturn(mockEditor);
-        autoCommitTypeEditor = new TypeEditor(new PrettySharedPreferences(mockSharedPref) {
-        }, mockSharedPref, STRING_KEY) {
+        when(mMockSharedPref.edit()).thenReturn(mMockEditor);
+        mTypeEditor = new TypeEditor(new PrettySharedPreferences(mMockSharedPref) {
+        }, mMockSharedPref, STRING_KEY) {
             @Override
             protected void putValue(SharedPreferences.Editor editor, String key, Object value) {
 
@@ -44,20 +44,37 @@ public class TypeEditorTest extends TestCase {
     }
 
     @Test
-    public void testPutAutocommit() {
+    public void testPutApply() {
         String mockValue = "Giang";
-        autoCommitTypeEditor.put(mockValue);
-        verify(mockEditor, never()).apply(); // Make sure apply() is not called if not apply.
-        autoCommitTypeEditor.put(mockValue).apply();
-        verify(mockEditor).apply(); // Make sure apply() is called to commit data.
+        mTypeEditor.put(mockValue);
+        verify(mMockEditor, never()).apply(); // Make sure apply() is not called if not apply.
+        mTypeEditor.put(mockValue).apply();
+        verify(mMockEditor).apply(); // Make sure apply() is called to commit data.
     }
 
     @Test
-    public void testRemoveAutocommit() {
-        autoCommitTypeEditor.remove();
-        verify(mockEditor, never()).apply(); // Make sure apply() is not called if not apply.
-        autoCommitTypeEditor.remove().apply();
-        verify(mockEditor).apply(); // Make sure apply() is called to commit data.
+    public void testPutCommit() {
+        String mockValue = "Giang";
+        mTypeEditor.put(mockValue);
+        verify(mMockEditor, never()).commit(); // Make sure commit() is not called if not apply.
+        mTypeEditor.put(mockValue).commit();
+        verify(mMockEditor).commit(); // Make sure commit() is called to commit data.
+    }
+
+    @Test
+    public void testRemoveApply() {
+        mTypeEditor.remove();
+        verify(mMockEditor, never()).apply(); // Make sure apply() is not called if not apply.
+        mTypeEditor.remove().apply();
+        verify(mMockEditor).apply(); // Make sure apply() is called to commit data.
+    }
+
+    @Test
+    public void testRemoveCommit() {
+        mTypeEditor.remove();
+        verify(mMockEditor, never()).commit(); // Make sure commit() is not called if not apply.
+        mTypeEditor.remove().commit();
+        verify(mMockEditor).commit(); // Make sure commit() is called to commit data.
     }
 
 }
