@@ -34,10 +34,10 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:21.0.0'
     compile 'com.jakewharton:butterknife:5.1.+'
     compile 'com.google.guava:guava:16.0'
-    compile project(':prettysharedpreferences')
-    compile 'io.reactivex:rxandroid:0.22.0'
+    compile 'com.github.talenguyen:prettysharedpreferences:1.0.2'
 
-    androidTestCompile('com.jayway.android.robotium:robotium:5.2.1')
+    compile project(':prettysharedpreferences')
+
     androidTestCompile('com.jakewharton.espresso:espresso:1.1-r3') {
         // TODO workaround for http://b.android.com/65445
         exclude group: 'com.google.guava', module: 'guava'
