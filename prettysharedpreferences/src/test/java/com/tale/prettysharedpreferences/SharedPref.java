@@ -2,7 +2,7 @@ package com.tale.prettysharedpreferences;
 
 import android.content.SharedPreferences;
 
-public class SharedPref extends PrettySharedPreferences {
+public class SharedPref extends PrettySharedPreferences<SharedPref> {
 
     public SharedPref(SharedPreferences sharedPreferences) {
         super(sharedPreferences);
