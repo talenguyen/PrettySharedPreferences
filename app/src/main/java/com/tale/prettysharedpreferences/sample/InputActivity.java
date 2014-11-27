@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,8 +14,6 @@ import com.tale.prettysharedpreferences.StringEditor;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import rx.Observable;
-import rx.Subscriber;
 
 /**
  * Created by TALE on 10/28/2014.
@@ -55,7 +51,9 @@ public class InputActivity extends ActionBarActivity {
             stringEditor.put(params[0]).apply();
             return null;
         }
-    };
+    }
+
+    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
