@@ -1,159 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    >
 
-
-    <android.support.v7.widget.GridLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:columnCount="3">
+        android:padding="16dp"
+        >
 
-        <!--row-->
 
-        <TextView android:text="String" />
+        <android.support.v7.widget.GridLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent"
+                                              app:columnCount="3"
+            >
 
-        <EditText
-            android:id="@+id/etString"
-            android:layout_marginLeft="16dip"
-            android:hint="Enter string value"
-            app:layout_gravity="fill_horizontal" />
+            <!--row-->
 
-        <Button
-            android:id="@+id/btSaveString"
-            android:layout_marginLeft="16dip"
-            android:text="Save" />
+            <TextView
+                android:text="String"
+                app:layout_columnSpan="3"
+                />
 
-        <!--row-->
+            <EditText
+                android:id="@+id/etString"
+                android:hint="Enter string value"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                />
 
-        <TextView android:text="Boolean" />
+            <Button
+                android:id="@+id/btSaveString"
+                android:layout_marginLeft="16dip"
+                android:text="Save"
+                />
 
-        <EditText
-            android:id="@+id/etBoolean"
-            android:layout_marginLeft="16dip"
-            android:hint="Enter boolean value"
-            app:layout_gravity="fill_horizontal" />
+            <!--row-->
 
-        <Button
-            android:id="@+id/btSaveBoolean"
-            android:layout_marginLeft="16dip"
-            android:text="Save" />
+            <TextView
+                android:text="Boolean"
+                app:layout_columnSpan="3"
+                />
 
-        <!--row-->
+            <EditText
+                android:id="@+id/etBoolean"
+                android:hint="Enter boolean value"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                />
 
-        <TextView android:text="Integer" />
+            <Button
+                android:id="@+id/btSaveBoolean"
+                android:layout_marginLeft="16dip"
+                android:text="Save"
+                />
 
-        <EditText
-            android:id="@+id/etInteger"
-            android:layout_marginLeft="16dip"
-            android:hint="Enter integer value"
-            android:inputType="numberSigned"
-            app:layout_gravity="fill_horizontal" />
+            <!--row-->
 
-        <Button
-            android:id="@+id/btSaveInteger"
-            android:layout_marginLeft="16dip"
-            android:text="Save" />
+            <TextView
+                android:text="Integer"
+                app:layout_columnSpan="3"
+                />
 
-        <!--row-->
+            <EditText
+                android:id="@+id/etInteger"
+                android:hint="Enter integer value"
+                android:inputType="numberSigned"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                />
 
-        <TextView android:text="Long" />
+            <Button
+                android:id="@+id/btSaveInteger"
+                android:layout_marginLeft="16dip"
+                android:text="Save"
+                />
 
-        <EditText
-            android:id="@+id/etLong"
-            android:layout_marginLeft="16dip"
-            android:hint="Enter long value"
-            android:inputType="numberSigned"
-            app:layout_gravity="fill_horizontal" />
+            <!--row-->
 
-        <Button
-            android:id="@+id/btSaveLong"
-            android:layout_marginLeft="16dip"
-            android:text="Save" />
+            <TextView
+                android:text="Long"
+                app:layout_columnSpan="3"
+                />
 
-        <!--row-->
+            <EditText
+                android:id="@+id/etLong"
+                android:hint="Enter long value"
+                android:inputType="numberSigned"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                />
 
-        <TextView android:text="Float" />
+            <Button
+                android:id="@+id/btSaveLong"
+                android:layout_marginLeft="16dip"
+                android:text="Save"
+                />
 
-        <EditText
-            android:id="@+id/etFloat"
-            android:layout_marginLeft="16dip"
-            android:hint="Enter float value"
-            android:inputType="numberDecimal"
-            app:layout_gravity="fill_horizontal" />
+            <!--row-->
 
-        <Button
-            android:id="@+id/btSaveFloat"
-            android:layout_marginLeft="16dip"
-            android:text="Save" />
+            <TextView
+                android:text="Float"
+                app:layout_columnSpan="3"
+                />
 
-        <!--row-->
+            <EditText
+                android:id="@+id/etFloat"
+                android:hint="Enter float value"
+                android:inputType="numberDecimal"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                />
 
-        <TextView android:text="Double" />
+            <Button
+                android:id="@+id/btSaveFloat"
+                android:layout_marginLeft="16dip"
+                android:text="Save"
+                />
 
-        <EditText
-            android:id="@+id/etDouble"
-            android:layout_marginLeft="16dip"
-            android:hint="Enter double value"
-            android:inputType="numberDecimal"
-            app:layout_gravity="fill_horizontal" />
+            <!--row-->
 
-        <Button
-            android:id="@+id/btSaveDouble"
-            android:layout_marginLeft="16dip"
-            android:text="Save" />
+            <TextView
+                android:text="Double"
+                app:layout_columnSpan="3"
+                />
 
-        <Button
-            android:id="@+id/btSaveAll"
-            android:text="Save All" />
-        <Button
-            android:id="@+id/btClear"
-            android:text="Clear All"
-            app:layout_columnSpan="2"/>
+            <EditText
+                android:id="@+id/etDouble"
+                android:hint="Enter double value"
+                android:inputType="numberDecimal"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                />
 
-        <!--row-->
+            <Button
+                android:id="@+id/btSaveDouble"
+                android:layout_marginLeft="16dip"
+                android:text="Save"
+                />
 
-        <View
-            android:background="@android:color/white"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="16dp"
-            app:layout_columnSpan="3"/>
+            <Button
+                android:id="@+id/btSaveAll"
+                android:text="Save All"
+                />
 
-        <TextView android:text="Thread Safe:"
-            app:layout_columnSpan="3"/>
+            <Button
+                android:id="@+id/btClear"
+                android:text="Clear All"
+                app:layout_columnSpan="2"
+                />
 
-        <!--row-->
-        <TextView android:text="String 1" />
+            <!--row-->
 
-        <EditText
-            android:id="@+id/etString1"
-            android:layout_marginLeft="16dip"
-            android:hint="Enter string value"
-            app:layout_columnSpan="2"
-            app:layout_gravity="fill_horizontal" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="@android:color/white"
+                app:layout_columnSpan="3"
+                />
 
-        <!--row-->
-        <TextView android:text="String 2" />
+            <TextView
+                android:text="==== Thread Safe ===="
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                app:layout_columnSpan="3"
+                android:gravity="center"
+                app:layout_gravity="fill_horizontal"
+                />
 
-        <EditText
-            android:id="@+id/etString2"
-            android:layout_marginLeft="16dip"
-            android:hint="Enter string value"
-            app:layout_gravity="fill_horizontal"
-            app:layout_columnSpan="2"/>
 
-        <Button
-            android:id="@+id/btSaveStringOnThread"
-            android:layout_marginLeft="16dip"
-            android:text="Save On Thread" />
+            <!--row-->
+            <TextView android:text="String 1"/>
 
-        <Button
-            android:id="@+id/btOpenDisplay"
-            android:text="Display value"
-            app:layout_columnSpan="3"
-            app:layout_gravity="fill_horizontal"/>
-    </android.support.v7.widget.GridLayout>
-</RelativeLayout>
+            <EditText
+                android:id="@+id/etString1"
+                android:layout_marginLeft="16dip"
+                android:hint="Enter string value"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                />
+
+            <!--row-->
+            <TextView android:text="String 2"/>
+
+            <EditText
+                android:id="@+id/etString2"
+                android:layout_marginLeft="16dip"
+                android:hint="Enter string value"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                />
+
+            <Button
+                android:id="@+id/btSaveStringOnThread"
+                android:text="Save On Thread"
+                app:layout_columnSpan="3"
+                />
+
+            <Button
+                android:id="@+id/btOpenDisplay"
+                android:text="Display value"
+                app:layout_columnSpan="3"
+                app:layout_gravity="fill_horizontal"
+                />
+        </android.support.v7.widget.GridLayout>
+    </RelativeLayout>
+</ScrollView>

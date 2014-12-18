@@ -17,6 +17,7 @@ import java.util.Random;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;
+import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.scrollTo;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.typeText;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.isAssignableFrom;
@@ -31,6 +32,7 @@ public class InputActivityTest extends ActivityInstrumentationTestCase2<InputAct
 
     public final String TAG = InputActivity.class.getSimpleName();
     public Random random;
+    private InputActivity activity;
 
     @SuppressWarnings("deprecation")
     public InputActivityTest() {
@@ -42,7 +44,7 @@ public class InputActivityTest extends ActivityInstrumentationTestCase2<InputAct
     public void setUp() throws Exception {
         super.setUp();
         // Espresso will not launch our activity for us, we must launch it via getActivity().
-        getActivity();
+        activity = getActivity();
         random = new Random();
     }
 
@@ -114,7 +116,7 @@ public class InputActivityTest extends ActivityInstrumentationTestCase2<InputAct
         onView(withId(R.id.etDouble)).perform(typeText(doubleVal));
 
         // Click save all
-        onView(withId(R.id.btSaveAll)).perform(click());
+        onView(withId(R.id.btSaveAll)).perform(scrollTo(), click());
 
         // Check
         onView(withId(R.id.tvStringVal)).check(matches(withText(stringVal)));
@@ -127,7 +129,7 @@ public class InputActivityTest extends ActivityInstrumentationTestCase2<InputAct
 
     public void testClearAll() {
         // Click clear all
-        onView(withId(R.id.btClear)).perform(click());
+        onView(withId(R.id.btClear)).perform(scrollTo(), click());
 
         // Check
         onView(withId(R.id.tvStringVal)).check(matches(withText("Not set")));
@@ -141,13 +143,13 @@ public class InputActivityTest extends ActivityInstrumentationTestCase2<InputAct
     public void testThreadSafe() {
         // Save string 1.
         final String string1 = getStringValue();
-        onView(withId(R.id.etString1)).perform(typeText(string1));
+        onView(withId(R.id.etString1)).perform(scrollTo(), typeText(string1));
 
         // Save string 2.
         final String string2 = getStringValue();
-        onView(withId(R.id.etString2)).perform(typeText(string2));
+        onView(withId(R.id.etString2)).perform(scrollTo(), typeText(string2));
 
-        onView(withId(R.id.btSaveStringOnThread)).perform(click());
+        onView(withId(R.id.btSaveStringOnThread)).perform(scrollTo(), click());
 
         // Check
         onView(withId(R.id.tvString1Val)).check(matches(withText(string1)));
