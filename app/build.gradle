@@ -14,7 +14,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,7 +34,6 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:21.0.0'
     compile 'com.jakewharton:butterknife:5.1.+'
     compile 'com.google.guava:guava:16.0'
-    compile 'com.github.talenguyen:prettysharedpreferences:1.0.2'
 
     compile project(':prettysharedpreferences')
 

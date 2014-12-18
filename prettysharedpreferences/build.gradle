@@ -1,20 +1,15 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven { url 'http://repo.springsource.org/plugins-release' }
-    }
-    dependencies {
-        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.6'
-    }
-}
-
 apply plugin: 'java'
-apply plugin: 'propdeps'
-apply plugin: 'propdeps-idea'
 apply from: file('../deploy.gradle')
 
-targetCompatibility = '1.6'
-sourceCompatibility = '1.6'
+targetCompatibility = JavaVersion.VERSION_1_6
+sourceCompatibility = JavaVersion.VERSION_1_6
+
+configurations {
+    provided
+}
+
+//Include provided for compilation
+sourceSets.main.compileClasspath += configurations.provided
 
 dependencies {
     repositories {
