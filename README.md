@@ -12,6 +12,7 @@ Version 1.0.2
 PrettySharedPreferences
 =======================
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PrettySharedPreferences-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1118)
+[![Build Status](https://travis-ci.org/talenguyen/PrettySharedPreferences.svg?branch=master)](https://travis-ci.org/talenguyen/PrettySharedPreferences)
 
 PrettySharedPreferences is a lightweight library for help you deal with SharedPreferences more easy and reduce most of boilplace code.
 
