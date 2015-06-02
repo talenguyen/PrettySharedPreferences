@@ -1,6 +1,8 @@
 package com.tale.prettysharedpreferences;
 
+import android.annotation.TargetApi;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 /**
  * Created by TALE on 9/10/2014.
@@ -27,6 +29,18 @@ public abstract class TypeEditor<ValueType, T extends PrettySharedPreferences> {
         putValue(target.editor(), key, value);
         return target;
     }
+
+    /**
+     * Set and apply value immediately in preferences. Calls apply() right after put.
+     *
+     * @param value The value to be saved.
+     */
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+    public void save(ValueType value) {
+        putValue(target.editor(), key, value);
+        target.apply();
+    }
+
 
     protected abstract void putValue(SharedPreferences.Editor editor, String key, ValueType value);
 
